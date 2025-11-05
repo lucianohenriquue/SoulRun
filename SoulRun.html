@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul Run - Mente em Movimento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #4A90E2;
+            --primary-purple: #9B59B6;
+            --primary-green: #2ECC71;
+            --primary-pink: #E84393;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+            --light-text: #fff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header - MODIFICADO PARA BRANCO */
+        header {
+            background: white; /* Alterado para branco */
+            color: var(--dark-text); /* Texto escuro para contraste */
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow); /* Sombra para destacar do fundo */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-purple); /* Cor do texto da logo */
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--primary-blue); /* Cor do ícone */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-text); /* Links em cor escura */
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue); /* Cor ao passar o mouse */
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-text); /* Cor do ícone do menu mobile */
+        }
+
+        /* Restante do CSS permanece igual */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-green), var(--primary-pink));
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: var(--light-text);
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--light-text);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background-color: #27ae60;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: """;
+            font-size: 4rem;
+            color: var(--primary-blue);
+            opacity: 0.2;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+        }
+
+        /* Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .event-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .event-body {
+            padding: 1.5rem;
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .event-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .event-button:hover {
+            background-color: #27ae60;
+        }
+
+        /* Calendar Section */
+        .calendar-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            font-weight: 600;
+            padding: 10px 0;
+            color: var(--primary-purple);
+        }
+
+        .calendar-cell {
+            height: 80px;
+            border: 1px solid #eee;
+            padding: 5px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-cell:hover {
+            background-color: #f5f5f5;
+        }
+
+        .calendar-cell.today {
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        .calendar-cell.event-day {
+            background-color: rgba(155, 89, 182, 0.1);
+        }
+
+        .day-number {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 0.8rem;
+        }
+
+        .mood-emoji {
+            font-size: 1.5rem;
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+        }
+
+        .activity-icon {
+            font-size: 1rem;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            color: var(--primary-green);
+        }
+
+        .mood-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .mood-option {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .mood-option:hover {
+            transform: scale(1.2);
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .activity-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .activity-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .activity-option:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .activity-icon-select {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+        }
+
+        .weekly-summary {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .summary-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .summary-card.mood {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+        }
+
+        .summary-card.activity {
+            background: linear-gradient(135deg, var(--primary-green), #1abc9c);
+            color: white;
+        }
+
+        .summary-card.suggestion {
+            background: linear-gradient(135deg, var(--primary-pink), #fd79a8);
+            color: white;
+        }
+
+        /* Articles Section */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-purple);
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--primary-purple);
+        }
+
+        /* Community Section */
+        .community-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .forum-section, .stories-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .forum-post, .story-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .post-header, .story-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .post-actions, .story-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-button:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .contact-form, .volunteer-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .volunteer-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .volunteer-option {
+            flex: 1;
+            min-width: 150px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .volunteer-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .volunteer-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header MODIFICADO - Agora em branco -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="SOUL.png" alt="Soul Run" class="logo-image">
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#events">Eventos</a></li>
+                    <li><a href="#calendar">Calendário</a></li>
+                    <li><a href="#articles">Bem-Estar</a></li>
+                    <li><a href="#community">Comunidade</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Soul Run</h1>
+                <p>Mente em Movimento</p>
+                <h2>Corra por você. Corra pela sua mente.</h2>
+                <a href="#events" class="cta-button">Participar da próxima corrida</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Sobre o Projeto</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>A Soul Run nasceu da união entre psicologia e educação física para promover saúde mental através da atividade física. Acreditamos que movimento é saúde mental, e que corridas e caminhadas coletivas podem ser poderosas ferramentas de autocuidado.</p>
+                    <p>Nossa missão é criar um espaço inclusivo onde pessoas possam cuidar da mente enquanto se movimentam, encontrando apoio profissional e construindo uma comunidade de apoio mútuo.</p>
+                    <div class="testimonials">
+                        <div class="testimonial">
+                            <p>"Participar das corridas da Soul Run mudou minha relação com a ansiedade. Hoje, quando me sinto sobrecarregado, coloco meus tênis e saio para correr."</p>
+                            <p><strong>Carlos, 32 anos</strong></p>
+                        </div>
+                        <div class="testimonial">
+                            <p>"Como psicóloga, sempre recomendo atividade física aos meus pacientes. A Soul Run oferece um ambiente acolhedor para colocar essa recomendação em prática."</p>
+                            <p><strong>Dra. Ana, psicóloga</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- Imagem ilustrativa -->
+                    <div style="width:100%;height:300px;background:linear-gradient(135deg, var(--primary-blue), var(--primary-purple));display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem;">
+                        <i class="fas fa-users" style="font-size:4rem;margin-right:1rem;"></i>
+                        <div>Comunidade em Movimento</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="container">
+            <h2 class="section-title">Próximos Eventos</h2>
+            <div class="events-grid">
+                <!-- Evento 1 -->
+                <div class="event-card">
+                    <div class="event-header">
+                        <h3>Corrida do Amanhecer</h3>
+                        <p>5km e 10km</p>
+                    </div>
+                    <div class="event-body">
+                        <div class="event-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>15 de Outubro, 2023</span>
+                        </div>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Parque da Cidade, São Paulo</span>
+                        </div>
+                        <div class="countdown">
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="days1">12</span>
+                                <span class="countdown-label">Dias</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="hours1">05</span>
+                                <span class="countdown-label">Horas</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="minutes1">30</span>
+                                <span class="countdown-label">Minutos</span>
+                            </div>
+                        </div>
+                        <button class="event-button">Confirmar Presença</button>
+                    </div>
+                </div>
+
+                <!-- Evento 2 -->
+                <div class="event-card">
+                    <div class="event-header">
+                        <h3>Caminhada Mindfulness</h3>
+                        <p>3km com práticas de atenção plena</p>
+                    </div>
+                    <div class="event-body">
+                        <div class="event-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>22 de Outubro, 2023</span>
+                        </div>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Parque Ibirapuera, São Paulo</span>
+                        </div>
+                        <div class="countdown">
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="days2">19</span>
+                                <span class="countdown-label">Dias</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="hours2">08</span>
+                                <span class="countdown-label">Horas</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="minutes2">15</span>
+                                <span class="countdown-label">Minutos</span>
+                            </div>
+                        </div>
+                        <button class="event-button">Confirmar Presença</button>
+                    </div>
+                </div>
+
+                <!-- Evento 3 -->
+                <div class="event-card">
+                    <div class="event-header">
+                        <h3>Corrida Noturna</h3>
+                        <p>5km com iluminação especial</p>
+                    </div>
+                    <div class="event-body">
+                        <div class="event-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>5 de Novembro, 2023</span>
+                        </div>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Avenida Paulista, São Paulo</span>
+                        </div>
+                        <div class="countdown">
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="days3">33</span>
+                                <span class="countdown-label">Dias</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="hours3">18</span>
+                                <span class="countdown-label">Horas</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="minutes3">45</span>
+                                <span class="countdown-label">Minutos</span>
+                            </div>
+                        </div>
+                        <button class="event-button">Confirmar Presença</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendar" class="calendar">
+        <div class="container">
+            <h2 class="section-title">Calendário Emocional</h2>
+            
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h3>Outubro 2023</h3>
+                    <div>
+                        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day">Dom</div>
+                    <div class="calendar-day">Seg</div>
+                    <div class="calendar-day">Ter</div>
+                    <div class="calendar-day">Qua</div>
+                    <div class="calendar-day">Qui</div>
+                    <div class="calendar-day">Sex</div>
+                    <div class="calendar-day">Sáb</div>
+                    
+                    <!-- Dias do calendário serão gerados via JavaScript -->
+                    <div id="calendar-days" class="calendar-days">
+                        <!-- Conteúdo gerado dinamicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="mood-selector">
+                <div class="mood-option" data-mood="feliz">😊</div>
+                <div class="mood-option" data-mood="triste">😔</div>
+                <div class="mood-option" data-mood="ansioso">😰</div>
+                <div class="mood-option" data-mood="calmo">😌</div>
+                <div class="mood-option" data-mood="motivado">💪</div>
+                <div class="mood-option" data-mood="cansado">😴</div>
+            </div>
+
+            <div class="activity-selector">
+                <div class="activity-option" data-activity="corrida">
+                    <div class="activity-icon-select"><i class="fas fa-running"></i></div>
+                    <span>Corrida</span>
+                </div>
+                <div class="activity-option" data-activity="caminhada">
+                    <div class="activity-icon-select"><i class="fas fa-walking"></i></div>
+                    <span>Caminhada</span>
+                </div>
+                <div class="activity-option" data-activity="academia">
+                    <div class="activity-icon-select"><i class="fas fa-dumbbell"></i></div>
+                    <span>Academia</span>
+                </div>
+                <div class="activity-option" data-activity="ioga">
+                    <div class="activity-icon-select"><i class="fas fa-spa"></i></div>
+                    <span>Ioga</span>
+                </div>
+                <div class="activity-option" data-activity="ciclismo">
+                    <div class="activity-icon-select"><i class="fas fa-bicycle"></i></div>
+                    <span>Ciclismo</span>
+                </div>
+            </div>
+
+            <div class="weekly-summary">
+                <h3>Resumo Semanal</h3>
+                <div class="summary-grid">
+                    <div class="summary-card mood">
+                        <h4>Emoção Predominante</h4>
+                        <p>😊 Feliz</p>
+                        <p>Você esteve bem esta semana!</p>
+                    </div>
+                    <div class="summary-card activity">
+                        <h4>Nível de Atividade</h4>
+                        <p>⚡ Moderado</p>
+                        <p>3 atividades esta semana</p>
+                    </div>
+                    <div class="summary-card suggestion">
+                        <h4>Sugestão</h4>
+                        <p>Continue assim! Tente incluir uma caminhada leve no final de semana.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="articles">
+        <div class="container">
+            <h2 class="section-title">Bem-Estar e Conteúdos</h2>
+            <div class="articles-grid">
+                <!-- Artigo 1 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Corrida e Saúde Mental: Como o exercício ajuda a reduzir o estresse</h3>
+                        <p>A atividade física regular, especialmente a corrida, tem efeitos profundos na nossa saúde mental. Descubra como...</p>
+                        <a href="#" class="read-more">Ler mais</a>
+                    </div>
+                </div>
+
+                <!-- Artigo 2 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Endorfina: O hormônio do bem-estar liberado durante o exercício</h3>
+                        <p>Entenda como a endorfina age no seu cérebro e por que você se sente tão bem depois de uma boa corrida...</p>
+                        <a href="#" class="read-more">Ler mais</a>
+                    </div>
+                </div>
+
+                <!-- Artigo 3 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">A importância da comunidade para a saúde mental</h3>
+                        <p>Participar de grupos de corrida não só melhora sua forma física, mas também fortalece suas conexões sociais...</p>
+                        <a href="#" class="read-more">Ler mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community">
+        <div class="container">
+            <h2 class="section-title">Comunidade Soul Run</h2>
+            <div class="community-container">
+                <div class="forum-section">
+                    <h3>Mural da Comunidade</h3>
+                    
+                    <div class="forum-post">
+                        <div class="post-header">
+                            <div class="user-avatar">MJ</div>
+                            <div>
+                                <h4>Maria J.</h4>
+                                <p>Há 2 dias</p>
+                            </div>
+                        </div>
+                        <p>Hoje completei minha primeira corrida de 5km sem parar! Há três meses não conseguia correr nem 500m. A comunidade Soul Run me deu a motivação que precisava!</p>
+                        <div class="post-actions">
+                            <button class="action-button"><i class="far fa-heart"></i> <span>24</span></button>
+                            <button class="action-button"><i class="far fa-comment"></i> <span>5</span></button>
+                            <button class="action-button"><i class="fas fa-share"></i> <span>Compartilhar</span></button>
+                        </div>
+                    </div>
+
+                    <div class="forum-post">
+                        <div class="post-header">
+                            <div class="user-avatar">PS</div>
+                            <div>
+                                <h4>Pedro S.</h4>
+                                <p>Há 5 dias</p>
+                            </div>
+                        </div>
+                        <p>Alguém mais para a corrida do amanhecer no domingo? Vamos formar um grupo para ir juntos!</p>
+                        <div class="post-actions">
+                            <button class="action-button"><i class="far fa-heart"></i> <span>12</span></button>
+                            <button class="action-button"><i class="far fa-comment"></i> <span>8</span></button>
+                            <button class="action-button"><i class="fas fa-share"></i> <span>Compartilhar</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stories-section">
+                    <h3>Histórias de Superação</h3>
+                    
+                    <div class="story-card">
+                        <div class="story-header">
+                            <div class="user-avatar">AS</div>
+                            <div>
+                                <h4>Ana S.</h4>
+                                <p>Como a corrida mudou minha saúde mental</p>
+                            </div>
+                        </div>
+                        <p>"Há um ano, eu estava no fundo do poço, lutando contra depressão e ansiedade. Um amigo me convidou para uma caminhada da Soul Run e, hesitante, fui. Foi o início de uma jornada transformadora. Hoje, corro regularmente e minha saúde mental melhorou significativamente."</p>
+                        <div class="story-actions">
+                            <button class="action-button"><i class="far fa-heart"></i> <span>42</span></button>
+                            <button class="action-button"><i class="far fa-comment"></i> <span>Comentar</span></button>
+                        </div>
+                    </div>
+
+                    <div class="login-prompt">
+                        <h3>Junte-se à Comunidade</h3>
+                        <p>Faça login para compartilhar suas experiências e conectar-se com outros participantes.</p>
+                        <button class="cta-button" style="margin-top: 1rem;">
+                            <i class="fab fa-google"></i> Entrar com Google
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contato e Inscrição</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Entre em Contato</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Nome</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">E-mail</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Assunto</label>
+                            <input type="text" id="subject" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Mensagem</label>
+                            <textarea id="message" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Enviar Mensagem</button>
+                    </form>
+                </div>
+
+                <div class="volunteer-info">
+                    <h3>Junte-se à Nossa Equipe</h3>
+                    <p>Você é psicólogo, educador físico ou tem interesse em se voluntariar para nossas atividades? Entre em contato conosco!</p>
+                    
+                    <div class="volunteer-options">
+                        <div class="volunteer-option">
+                            <div class="volunteer-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>Psicólogo</h4>
+                            <p>Ofereça apoio emocional durante os eventos</p>
+                        </div>
+                        <div class="volunteer-option">
+                            <div class="volunteer-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <h4>Educador Físico</h4>
+                            <p>Oriente sobre técnicas e cuidados na atividade física</p>
+                        </div>
+                        <div class="volunteer-option">
+                            <div class="volunteer-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h4>Organizador</h4>
+                            <p>Ajudar na logística e coordenação dos eventos</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Soul Run</h3>
+                    <p>Promovendo saúde mental através da atividade física.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#events">Eventos</a></li>
+                        <li><a href="#calendar">Calendário</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#articles">Artigos</a></li>
+                        <li><a href="#community">Comunidade</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Contato</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contato@soulrun.com</li>
+                        <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Soul Run. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <i class="fas fa-palette"></i>
+    </div>
+
+    <script>
+        // Calendário Interativo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gerar dias do calendário
+            const calendarDays = document.getElementById('calendar-days');
+            const today = new Date();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            
+            // Primeiro dia do mês
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            // Último dia do mês
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            
+            // Dias da semana do primeiro dia (0 = Domingo, 1 = Segunda, etc.)
+            const firstDayIndex = firstDay.getDay();
+            
+            // Dias do mês anterior (para preencher o início do calendário)
+            const prevLastDay = new Date(currentYear, currentMonth, 0).getDate();
+            
+            // Dias do próximo mês (para preencher o final do calendário)
+            const nextDays = 7 - lastDay.getDay() - 1;
+            
+            let days = "";
+            
+            // Dias do mês anterior
+            for (let x = firstDayIndex; x > 0; x--) {
+                days += `<div class="calendar-cell"><span class="day-number">${prevLastDay - x + 1}</span></div>`;
+            }
+            
+            // Dias do mês atual
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                const isToday = i === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
+                const isEventDay = i === 15 || i === 22 || i === 5; // Dias com eventos
+                
+                let moodEmoji = "";
+                let activityIcon = "";
+                
+                // Adicionar alguns dados de exemplo
+                if (i === 10) {
+                    moodEmoji = '<div class="mood-emoji">😊</div>';
+                    activityIcon = '<div class="activity-icon"><i class="fas fa-running"></i></div>';
+                } else if (i === 12) {
+                    moodEmoji = '<div class="mood-emoji">😌</div>';
+                    activityIcon = '<div class="activity-icon"><i class="fas fa-walking"></i></div>';
+                } else if (i === 18) {
+                    moodEmoji = '<div class="mood-emoji">💪</div>';
+                    activityIcon = '<div class="activity-icon"><i class="fas fa-dumbbell"></i></div>';
+                }
+                
+                days += `<div class="calendar-cell ${isToday ? 'today' : ''} ${isEventDay ? 'event-day' : ''}" data-day="${i}">
+                            <span class="day-number">${i}</span>
+                            ${moodEmoji}
+                            ${activityIcon}
+                         </div>`;
+            }
+            
+            // Dias do próximo mês
+            for (let j = 1; j <= nextDays; j++) {
+                days += `<div class="calendar-cell"><span class="day-number">${j}</span></div>`;
+            }
+            
+            calendarDays.innerHTML = days;
+            
+            // Seletores de humor e atividade
+            const moodOptions = document.querySelectorAll('.mood-option');
+            const activityOptions = document.querySelectorAll('.activity-option');
+            
+            moodOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remover seleção anterior
+                    moodOptions.forEach(opt => opt.style.backgroundColor = '');
+                    // Selecionar atual
+                    this.style.backgroundColor = 'rgba(74, 144, 226, 0.2)';
+                    // Em uma implementação real, isso salvaria o humor para o dia selecionado
+                    alert(`Humor "${this.dataset.mood}" selecionado!`);
+                });
+            });
+            
+            activityOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remover seleção anterior
+                    activityOptions.forEach(opt => opt.style.backgroundColor = '');
+                    // Selecionar atual
+                    this.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
+                    // Em uma implementação real, isso salvaria a atividade para o dia selecionado
+                    alert(`Atividade "${this.dataset.activity}" selecionada!`);
+                });
+            });
+            
+            // Contadores regressivos para eventos
+            function updateCountdowns() {
+                const event1Date = new Date('2023-10-15T06:00:00');
+                const event2Date = new Date('2023-10-22T08:00:00');
+                const event3Date = new Date('2023-11-05T19:00:00');
+                
+                const now = new Date();
+                
+                // Evento 1
+                const diff1 = event1Date - now;
+                const days1 = Math.floor(diff1 / (1000 * 60 * 60 * 24));
+                const hours1 = Math.floor((diff1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes1 = Math.floor((diff1 % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById('days1').textContent = days1;
+                document.getElementById('hours1').textContent = hours1;
+                document.getElementById('minutes1').textContent = minutes1;
+                
+                // Evento 2
+                const diff2 = event2Date - now;
+                const days2 = Math.floor(diff2 / (1000 * 60 * 60 * 24));
+                const hours2 = Math.floor((diff2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes2 = Math.floor((diff2 % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById('days2').textContent = days2;
+                document.getElementById('hours2').textContent = hours2;
+                document.getElementById('minutes2').textContent = minutes2;
+                
+                // Evento 3
+                const diff3 = event3Date - now;
+                const days3 = Math.floor(diff3 / (1000 * 60 * 60 * 24));
+                const hours3 = Math.floor((diff3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes3 = Math.floor((diff3 % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById('days3').textContent = days3;
+                document.getElementById('hours3').textContent = hours3;
+                document.getElementById('minutes3').textContent = minutes3;
+            }
+            
+            // Atualizar contadores a cada minuto
+            updateCountdowns();
+            setInterval(updateCountdowns, 60000);
+            
+            // Botões de confirmação de presença
+            const eventButtons = document.querySelectorAll('.event-button');
+            eventButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.textContent = 'Presença Confirmada!';
+                    this.style.backgroundColor = '#27ae60';
+                    this.disabled = true;
+                    
+                    // Em uma implementação real, isso enviaria uma confirmação para o servidor
+                    alert('Sua presença foi confirmada! Você receberá um lembrete por e-mail.');
+                });
+            });
+            
+            // Formulário de contato
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                contactForm.reset();
+            });
+            
+            // Alternância de tema
+            const themeToggle = document.querySelector('.theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                // Em uma implementação completa, isso alternaria entre temas claro e escuro
+                alert('Alternância de tema - funcionalidade em desenvolvimento');
+            });
+            
+            // Menu mobile
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Fechar menu mobile ao clicar em um link
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
