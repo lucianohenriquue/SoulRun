@@ -31,6 +31,7 @@
             color: var(--dark-text);
             background-color: var(--light-bg);
             overflow-x: hidden;
+            padding-top: 80px; /* Espaço para o header fixo */
         }
 
         .container {
@@ -40,21 +41,29 @@
             padding: 0 15px;
         }
 
-        /* Header - MODIFICADO PARA BRANCO */
+        /* Header - MODIFICADO PARA SCROLL */
         header {
-            background: white; /* Alterado para branco */
-            color: var(--dark-text); /* Texto escuro para contraste */
-            padding: 1rem 0;
-            position: sticky;
+            background: white;
+            color: var(--dark-text);
+            padding: 1.5rem 0;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: var(--shadow); /* Sombra para destacar do fundo */
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: var(--transition);
         }
 
         .logo {
@@ -63,36 +72,73 @@
             gap: 10px;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-purple); /* Cor do texto da logo */
+            color: var(--primary-purple);
+            transition: var(--transition);
+        }
+
+        header.scrolled .logo {
+            transform: scale(0.8);
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            width: 0;
+            overflow: hidden;
         }
 
         .logo i {
             font-size: 1.8rem;
-            color: var(--primary-blue); /* Cor do ícone */
+            color: var(--primary-blue);
+            transition: var(--transition);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--dark-text); /* Links em cor escura */
-            text-decoration: none;
-            font-weight: 500;
             transition: var(--transition);
         }
 
+        header.scrolled .nav-links {
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
         .nav-links a:hover {
-            color: var(--primary-blue); /* Cor ao passar o mouse */
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .mobile-menu {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark-text); /* Cor do ícone do menu mobile */
+            color: var(--dark-text);
+            transition: var(--transition);
+        }
+
+        header.scrolled .mobile-menu {
+            font-size: 1.3rem;
         }
 
         /* Restante do CSS permanece igual */
@@ -724,6 +770,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
             .nav-links {
                 display: none;
                 position: absolute;
@@ -782,8 +832,8 @@
     </style>
 </head>
 <body>
-    <!-- Header MODIFICADO - Agora em branco -->
-    <header>
+    <!-- Header MODIFICADO - Com efeito de scroll -->
+    <header id="main-header">
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
@@ -1267,6 +1317,16 @@
     </div>
 
     <script>
+        // Efeito de scroll no header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
         // Calendário Interativo
         document.addEventListener('DOMContentLoaded', function() {
             // Gerar dias do calendário
@@ -1449,3 +1509,4 @@
     </script>
 </body>
 </html>
+
